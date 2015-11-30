@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewDocentesTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewDocentesLabel_codDoc}"/>
+                    <h:outputText value="#{docentesController.selected.codDoc}" title="#{bundle.ViewDocentesTitle_codDoc}"/>
+                    <h:outputText value="#{bundle.ViewDocentesLabel_cedula}"/>
+                    <h:outputText value="#{docentesController.selected.cedula}" title="#{bundle.ViewDocentesTitle_cedula}"/>
+                    <h:outputText value="#{bundle.ViewDocentesLabel_nombre}"/>
+                    <h:outputText value="#{docentesController.selected.nombre}" title="#{bundle.ViewDocentesTitle_nombre}"/>
+                    <h:outputText value="#{bundle.ViewDocentesLabel_dia}"/>
+                    <h:outputText value="#{docentesController.selected.dia}" title="#{bundle.ViewDocentesTitle_dia}"/>
+                    <h:outputText value="#{bundle.ViewDocentesLabel_horaInicio}"/>
+                    <h:outputText value="#{docentesController.selected.horaInicio}" title="#{bundle.ViewDocentesTitle_horaInicio}"/>
+                    <h:outputText value="#{bundle.ViewDocentesLabel_horaFin}"/>
+                    <h:outputText value="#{docentesController.selected.horaFin}" title="#{bundle.ViewDocentesTitle_horaFin}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{docentesController.destroyAndView}" value="#{bundle.ViewDocentesDestroyLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="Edit" value="#{bundle.ViewDocentesEditLink}"/>
+                <br />
+                <h:commandLink action="#{docentesController.prepareCreate}" value="#{bundle.ViewDocentesCreateLink}" />
+                <br />
+                <h:commandLink action="#{docentesController.prepareList}" value="#{bundle.ViewDocentesShowAllLink}"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.ViewDocentesIndexLink}" action="/index" immediate="true" />
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

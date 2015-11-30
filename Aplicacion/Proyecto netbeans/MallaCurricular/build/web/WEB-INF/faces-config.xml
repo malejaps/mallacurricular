@@ -1,0 +1,151 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!-- =========== FULL CONFIGURATION FILE ================================== -->
+
+<faces-config version="2.0"
+    xmlns="http://java.sun.com/xml/ns/javaee" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd">
+    <application>
+        <resource-bundle>
+            <base-name>//resource/Bundle</base-name>
+            <var>bundle</var>
+        </resource-bundle>
+        <resource-bundle>
+            <base-name>/Bundle</base-name>
+            <var>bundle</var>
+        </resource-bundle>
+        <resource-bundle>
+            <base-name>/Bundle</base-name>
+            <var>bundle</var>
+        </resource-bundle>
+        <resource-bundle>
+            <base-name>/Bundle</base-name>
+            <var>bundle</var>
+        </resource-bundle>
+        <resource-bundle>
+            <base-name>/Bundle</base-name>
+            <var>bundle</var>
+        </resource-bundle>
+        <resource-bundle>
+            <base-name>/Bundle</base-name>
+            <var>bundle</var>
+        </resource-bundle>
+        <resource-bundle>
+            <base-name>/Bundlee</base-name>
+            <var>bundle</var>
+        </resource-bundle>
+        <resource-bundle>
+            <base-name>/Bundle</base-name>
+            <var>bundle</var>
+        </resource-bundle>
+        <resource-bundle>
+            <base-name>/Bundle</base-name>
+            <var>bundle</var>
+        </resource-bundle>
+        <resource-bundle>
+            <base-name>/Bundlee</base-name>
+            <var>bundle</var>
+        </resource-bundle>
+        <resource-bundle>
+            <base-name>/Bundle</base-name>
+            <var>bundle</var>
+        </resource-bundle>
+        <resource-bundle>
+            <base-name>/Bundle</base-name>
+            <var>bundle</var>
+        </resource-bundle>
+        <resource-bundle>
+            <base-name>/Bundle</base-name>
+            <var>bundle</var>
+        </resource-bundle>
+    </application>
+    <navigation-rule>
+        <from-view-id>/index.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>AcerdaDe</from-outcome>
+            <to-view-id>/AcercaDe.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>Ayuda</from-outcome>
+            <to-view-id>/AyudaIndex.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>Resoluciones</from-outcome>
+            <to-view-id>/BuscarResolucionUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>Programas</from-outcome>
+            <to-view-id>/CrearProgramaUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>Docentes</from-outcome>
+            <to-view-id>/DisponibilidadDocentesUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>Programacion</from-outcome>
+            <to-view-id>/CrearProgramacionAcademicaUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/BuscarResolucionUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>Resolucion</from-outcome>
+            <to-view-id>/ResolucionUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>Detalle</from-outcome>
+            <to-view-id>/DetalleResolucionUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/AcercaDe.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>inicio</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/ErrorLogin.html</from-view-id>
+        <navigation-case>
+            <from-outcome>loguin</from-outcome>
+            <to-view-id>/Login.html</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/AyudaIndex.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>AyudaB</from-outcome>
+            <to-view-id>/AyudaGlosario.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>AyudaA</from-outcome>
+            <to-view-id>/AyudaTeclado.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>AyudaC</from-outcome>
+            <to-view-id>/AyudaAplicacion.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/CrearProgramacionAcademicaUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>Disponibilidad</from-outcome>
+            <to-view-id>/DisponibilidadDocentesUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+</faces-config>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

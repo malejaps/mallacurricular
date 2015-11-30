@@ -1,0 +1,235 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/templateProgramacion.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:prime="http://primefaces.prime.com.tr/ui"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:define name="content">
+
+        <prime:breadCrumb >
+            <prime:menuitem value="Categories" url="index.xhtml" />
+            <prime:menuitem value="Disponibilidad Docentes" url="DisponibilidadDocentesUI.xhtml" />
+
+
+        </prime:breadCrumb>
+
+        <prime:separator  />
+
+
+        <prime:panel id="box-form" header="DISPONIBILIDAD DOCENTES" rendered="#{!DocentesBean.newPrograma}">
+            <h:form>
+
+
+                <h:panelGrid columns="2" cellpadding="5">
+                    <h:outputLabel value="Código:" for="codDoc"  style="text-align: center" />
+                    <prime:keyboard id="codDoc" value="#{docentesController.selected.codDoc}" title="Ingresar el codigo correspondiente al numero de disponibilidades del docente. Ej: d1_1" required="true" requiredMessage="Debe escribir el codigo de disponibilidad del docente"
+                                    showMode="button" buttonImageOnly="true" buttonImage="./resources/imagenes/teclado.jpg"/>
+
+
+                    <h:outputLabel value="Cedula:" for="cedula" style="text-align: right"/>
+                    <prime:keyboard id="cedula" value="#{docentesController.selected.cedula}" title="Ingresar la cedula del docente" required="true" requiredMessage="Debe escribir la cedula del docente."
+                                    showMode="button" buttonImageOnly="true" buttonImage="./resources/imagenes/teclado.jpg"/>
+
+
+                    <h:outputLabel value="Nombre:" for="nombre" style="text-align: right"/>
+                    <prime:keyboard id="nombre" value="#{docentesController.selected.docente}" title="Ingresar el nombre del docente" required="true" requiredMessage="Debe escribir el nombre del docente."
+                                    showMode="button" buttonImageOnly="true" buttonImage="./resources/imagenes/teclado.jpg"/>
+
+
+                    <h:outputLabel value="Dia:" for="dia" style="text-align: right"/>
+                    <prime:keyboard id="dia" value="#{docentesController.selected.dia}" title="Ingresar el dia de disponibilidad del docente" required="true" requiredMessage="Debe seleccionar el día disponible del docente"
+                                    showMode="button" buttonImageOnly="true" buttonImage="./resources/imagenes/teclado.jpg"/>
+
+
+
+                    <h:outputLabel value="Desde:" for="horaInicio" style="text-align: right"/>
+                    <prime:inputMask  value="#{docentesController.selected.horaInicio}" mask="99:99" title="Ingresar desde que hora el docente esta disponible" required="true" requiredMessage="Debe ingresar desde que hora esta disponible del docente"/>   
+
+
+                    <h:outputLabel value="Hasta:" for="horaFin" style="text-align: right"/>
+                    <prime:inputMask  value="#{docentesController.selected.horaFin}" mask="99:99" title="Ingresar hasta que hora el docente esta disponible" required="true" requiredMessage="Debe ingresar hasta que hora esta disponible del docente"/>   
+
+
+                    <h:outputLabel value="Disponibilidad:" for="disponibilidad" style="text-align: right"/>
+                    <prime:keyboard id="disponibilidad" value="#{docentesController.selected.disponibilidad}" title="Ingresar 'Si' o 'No' esta disponible el horario del docente" required="true" requiredMessage="Debe ingresar la disponibilidad del docente"    
+                                    showMode="button" buttonImageOnly="true" buttonImage="./resources/imagenes/teclado.jpg"/>
+
+
+
+
+
+
+                </h:panelGrid>
+
+
+                <h:commandLink accesskey="c" action="#{docentesController.create}" value="" title="Crear la disponibilidad del docente">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <h:graphicImage url="./resources/imagenes/save.png" styleClass="icon" width="48px" height="48px" />
+                </h:commandLink>
+
+                <h:commandLink accesskey="m" action="#{docentesController.update()}" value="" title="Modificar la disponibilidad del docente">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <h:graphicImage url="./resources/imagenes/edit.png" styleClass="icon" width="48px" height="48px" />
+                </h:commandLink>
+                <h:commandLink accesskey="l" action="#{docentesController.mostrarModificar()}" value="" title="Borrar datos escritos">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <h:graphicImage url="./resources/imagenes/limpiar.jpg" styleClass="icon" width="48px" height="48px" />
+                </h:commandLink>
+
+
+            </h:form>
+        </prime:panel>
+
+        <h:form id="tabla">
+
+
+
+            <prime:panel header="DISPONIBILIDAD DOCENTES"  >
+                <prime:dataTable id="tbl" var="item" value="#{docentesController.items}"
+                                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PagesLink} {NextPageLink} {LastPageLink}"     
+                                 paginator="true" rows="4"
+
+                                 >
+
+                    <prime:column 
+                     
+
+                        filterMatchMode="startsWith">
+                        <f:facet name="header">
+                            <h:outputText value="Cod." />  
+
+                        </f:facet> 
+                        <h:outputText value="#{item.codDoc}" />
+                    </prime:column>
+
+
+
+                    <prime:column 
+                        sortBy="#{item.docente}"
+
+                        filterMatchMode="startsWith">
+                        <f:facet name="header">
+                            <h:outputText value="Doc." />  
+
+                        </f:facet> 
+                        <h:outputText value="#{item.docente}" />
+                    </prime:column>
+
+
+
+
+                    <prime:column 
+                        filterMatchMode="startsWith">
+                        <f:facet name="header">
+                            <h:outputText value="Dia" />  
+
+                        </f:facet> 
+                        <h:outputText value="#{item.dia}" />
+                    </prime:column>
+
+
+                    <prime:column 
+                        filterMatchMode="startsWith">
+                        <f:facet name="header">
+                            <h:outputText value="HI" />  
+
+                        </f:facet> 
+                        <h:outputText value="#{item.horaInicio}" />
+                    </prime:column>
+
+
+
+                    <prime:column 
+                        filterMatchMode="startsWith">
+                        <f:facet name="header">
+                            <h:outputText value="HF" />  
+
+                        </f:facet> 
+                        <h:outputText value="#{item.horaFin}" />
+                    </prime:column>
+
+
+                    <prime:column filterBy=""
+                                  sortBy=""
+                                  filterMatchMode="startsWith">
+                        <f:facet name="header">
+                            <h:outputText value="Disp." />  
+
+                        </f:facet> 
+
+
+                        <h:outputText value="#{item.disponibilidad}" />
+                    </prime:column>
+
+
+
+                    <prime:column filterBy=""
+                                  headerText=""  >
+                        <prime:commandLink  onclick="confirmation.show()" type="button" title="Eliminar la disponibilidad del docente" >
+                            <h:graphicImage url="./resources/imagenes/eliminar.png"  />
+                            <f:setPropertyActionListener value="#{item}" target="#{docentesController.current}"/>
+                        </prime:commandLink>
+
+                        <prime:commandLink onclick="dlg2.show()" type="button" title="Modificar la disponibilidad del docente" >
+                            <h:graphicImage url="./resources/imagenes/edit.png"  />
+                            <f:setPropertyActionListener value="#{item}" target="#{docentesController.current}"/>   
+
+                        </prime:commandLink>
+
+                    </prime:column>
+
+
+                </prime:dataTable>
+
+
+
+
+                <prime:confirmDialog message="¿Está seguro que desea eliminar la disponibilidad?"
+                                     severity="alert" widgetVar="confirmation">
+
+                    <h:commandButton action="#{docentesController.performDestroy()}" value="SI"  onclick="confirmation.hide()"  
+                                     />
+                    <h:commandButton action="#{docentesController.mostrarModificar()}" value="NO" onclick="confirmation.hide()"  />
+
+                </prime:confirmDialog>
+
+
+
+                <prime:confirmDialog message="¿Está seguro que desea modificar la disponibilidad?"
+                                     severity="alert" widgetVar="dlg2">
+
+                    <h:commandButton  value="SI"  onclick="dlg.show"  
+                                      />
+                    <h:commandButton action="#{docentesController.mostrarModificar()}" value="NO" onclick="dlg2.hide()" />
+
+                </prime:confirmDialog>
+
+
+
+
+
+
+
+                <h:panelGrid columns="2" >  
+
+                    <h:commandLink>  
+                        <prime:graphicImage value="./resources/imagenes/ico_excel.png" title="Guardar un archivo en excel de la tabla"/>  
+                        <prime:dataExporter type="xls" target="tbl" fileName="Disponilidad_Docentes" />  
+                    </h:commandLink>  
+
+                    <h:commandLink>  
+                        <prime:graphicImage value="./resources/imagenes/pdf.jpg" title="Guardar un archivo en pdf de la tabla"/>  
+                        <prime:dataExporter type="pdf" target="tbl" fileName="Disponibilidad_Docentes"/>  
+                    </h:commandLink>  
+
+
+                </h:panelGrid> 
+            </prime:panel>
+
+        </h:form > 
+
+        <prime:growl id="messages" />
+
+
+    </ui:define>
+
+</ui:composition>

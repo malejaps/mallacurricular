@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    template="/templateProgramacion.xhtml"
+    xmlns:prime="http://primefaces.prime.com.tr/ui"
+    xmlns:f="http://java.sun.com/jsf/core" >
+
+
+    <ui:define  name="content" >
+
+        <prime:breadCrumb preview="true" expandEffectDuration="200" previewWidth="50">
+            <prime:menuitem value="#{bundle.BreadCrumbInicio}" url="faces/index.xhtml" />
+
+
+        </prime:breadCrumb>
+
+        <prime:separator />
+
+
+        <prime:panel >
+
+
+
+            <h:panelGrid columns="2" style="width: 70%; position: relative; text-align: center" >
+
+
+                <h:panelGrid columns="1" >
+
+                    <h:link  outcome="Programas"  accesskey="p"  title="#{bundle.BreadCrumbProgramas_title}" >
+                        <h:graphicImage url="./resources/imagenes/programas.jpg" width="130px" height="145px"/>
+                    </h:link>
+
+                    <h:link value="#{bundle.BreadCrumbProgramas}" outcome="Programas" />
+
+
+                </h:panelGrid >
+                <h:panelGrid columns="1" >
+                
+
+                    <h:link  outcome="Resoluciones"  accesskey="r" title="#{bundle.BreadCrumbResoluciones_title}">
+                        <prime:graphicImage value="./resources/imagenes/resol2.jpg" width="130px" height="145px"/>
+                    </h:link>
+                    <h:link value="#{bundle.BreadCrumbResoluciones}" outcome="Resoluciones"/>
+
+            </h:panelGrid >
+
+            
+            
+            </h:panelGrid>
+            
+            
+            <h:panelGrid columns="2" style="width: 70%; position: relative; text-align: center" >
+
+
+                <h:panelGrid columns="1" >
+                    
+                    
+                    <h:link  outcome="Programacion"  accesskey="p"  title="#{bundle.BreadCrumbProgramas_title}" >
+                        <h:graphicImage url="./resources/imagenes/programacion.jpg" width="130px" height="145px"/>
+                    </h:link>
+
+                    <h:link value="Programacion Academica" outcome="Programas" />
+            
+           
+
+
+                </h:panelGrid >
+                <h:panelGrid columns="1" >
+
+                    
+                       
+                    <h:link  outcome="Docentes"  accesskey="d"  title="Ver la disponibilidad de los docentes" >
+                        <h:graphicImage url="./resources/imagenes/docentes.jpg" width="130px" height="145px"/>
+                    </h:link>
+
+                    <h:link value="Disponibilidad de Docentes" outcome="Docentes" />
+            
+          
+
+   </h:panelGrid >
+            
+            </h:panelGrid>
+
+        </prime:panel>
+
+
+        <prime:separator />
+    </ui:define>
+
+
+</ui:composition>

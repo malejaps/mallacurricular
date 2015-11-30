@@ -1,0 +1,212 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/templateMalla.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:prime="http://primefaces.prime.com.tr/ui"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:define name="content" >
+
+
+        <prime:breadCrumb preview="true" expandEffectDuration="200" previewWidth="24"  >
+            <prime:menuitem value="Categories" url="index.xhtml" />
+            <prime:menuitem value="#{bundle.BreadCrumbResoluciones}" url="BuscarResolucionUI.xhtml" />
+
+        </prime:breadCrumb>
+        <prime:separator  />
+
+        <h:form>
+            <prime:panel id="box-form" header="#{bundle.TitleResolucion}" rendered="#{!ResolucionBean.newResolucion}" >
+
+
+
+                <h:panelGrid columns="2" cellpadding="5">
+                    <h:outputLabel value="Código:" for="codResol" />
+                    <prime:keyboard id="codResol" value="#{resolucionesController.selected.codResol}" title="#{bundle.CreateResolucionesTitle_codResol}" required="true" requiredMessage="#{bundle.CreateResolucionesRequiredMessage_codResol}"
+                                    showMode="button" buttonImageOnly="true" buttonImage="./resources/imagenes/teclado.jpg"/>
+
+
+                    <h:outputLabel value="Nombre:" for="nomResol"/>
+                    <prime:keyboard id="nomResol" value="#{resolucionesController.selected.nomResol}" title="#{bundle.CreateResolucionesTitle_nomResol}" required="true" requiredMessage="#{bundle.CreateResolucionesRequiredMessage_nomResol}"
+                                    showMode="button" buttonImageOnly="true" buttonImage="./resources/imagenes/teclado.jpg"/>
+
+
+
+                    <h:outputLabel value="Fecha:" for="fechaResol" /> 
+                    <prime:calendar value="#{resolucionesController.selected.fechaResol}"   showOn="button"  mindate="today" maxdate="today" title="mm/dd/aaaa" required="true" requiredMessage="Debe seleccionar la fecha de la resolucion">
+
+                    </prime:calendar> 
+
+
+
+
+                    <h:outputLabel value="Programa:" for="codProg"/>
+                    <h:selectOneMenu  id="codProg" value="#{resolucionesController.selected.codProg}"  title="#{bundle.SemestreMalla_title}" required="true" requiredMessage="Debe seleccionar el código del programa">
+                        <f:selectItems value="#{programasController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+
+
+
+                </h:panelGrid >
+
+
+                <h:commandLink action="#{resolucionesController.create}"  accesskey="c" title="#{bundle.CrearR_title}"  > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <h:graphicImage url="./resources/imagenes/save.png" styleClass="icon" width="48px" height="48px" />
+                </h:commandLink>
+                <h:commandLink action="#{resolucionesController.update}"  accesskey="m" title="#{bundle.ModificarR_title}"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <h:graphicImage url="./resources/imagenes/edit.png" styleClass="icon" width="48px" height="48px" />
+                </h:commandLink>
+
+                <h:commandLink accesskey="l" action="#{resolucionesController.limpiarCurrent()}" value="" title="Borrar los datos escritos">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <h:graphicImage url="./resources/imagenes/limpiar.jpg" styleClass="icon" width="48px" height="48px" />
+                </h:commandLink>
+
+
+
+            </prime:panel>
+
+
+        </h:form>  
+
+
+
+        <prime:panel header="#{bundle.TitleResoluciones}"  >
+            <h:form>
+                <prime:dataTable id="tbl" var="item" value="#{resolucionesController.items}"
+                                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PagesLink} {NextPageLink} {LastPageLink}"     
+                                 paginator="true" rows="5"
+                                 >
+                    <prime:column filterBy=""
+                                  headerText="Codigo"
+                                  filterMatchMode="startsWith">
+                            <f:facet name="header">
+                            <h:outputText value="Codigo" />  
+
+                        </f:facet> 
+                        <h:outputText value="#{item.codResol}" />
+                    </prime:column>
+
+                    <prime:column filterBy=""
+                                  headerText="Nombre" filterMatchMode="startsWith">
+                            <f:facet name="header">
+                            <h:outputText value="Nombre" />  
+
+                        </f:facet> 
+                        <h:outputText value="#{item.nomResol}" />
+                    </prime:column>
+
+                    <prime:column filterBy=""
+                                  headerText="Fecha"
+                                  filterMatchMode="startsWith">
+                            <f:facet name="header">
+                            <h:outputText value="Fecha" />  
+
+                        </f:facet> 
+                        <h:outputText value="#{item.fechaResol}" >
+                            <f:convertDateTime pattern="M/d/yyyy" />
+                        </h:outputText>
+                    </prime:column>
+
+                    <prime:column filterBy="#{item.codProg}"
+                                  headerText="Programa"  filterOptions="#{programasController.itemsAvailableSelectOne}"  filterMatchMode="startsWith">
+                            <f:facet name="header">
+                            <h:outputText value="Programa" />  
+
+                        </f:facet> 
+                        <h:outputText value="#{item.codProg}" />
+                    </prime:column>
+
+
+                    <prime:column filterBy=""
+                                  headerText=""  >
+                        
+                        <prime:commandLink   onclick="confirmation.show()" type="button" title="Eliminar la resolucion" >
+                            <h:graphicImage url="./resources/imagenes/eliminar.png"  />
+                            <f:setPropertyActionListener value="#{item}" target="#{resolucionesController.current}"/>
+                        </prime:commandLink>
+
+                        <prime:commandLink onclick="dlg2.show()" type="button" title="Modificar la resolucion" >
+                            <h:graphicImage url="./resources/imagenes/edit.png"  />
+                            <f:setPropertyActionListener value="#{item}" target="#{resolucionesController.current}"/>   
+
+                        </prime:commandLink>
+
+
+                    </prime:column>
+
+                </prime:dataTable>
+                   
+                     <h:panelGrid columns="2">  
+               
+                    <h:commandLink >  
+                        <prime:graphicImage value="./resources/imagenes/ico_excel.png" title="Guardar un archivo en excel de la tabla"/>  
+                        <prime:dataExporter type="xls" target="tbl" fileName="Resoluciones_Academicas" />  
+                    </h:commandLink>  
+
+                    <h:commandLink>  
+                        <prime:graphicImage value="./resources/imagenes/pdf.jpg" title="Guardar un archivo en pdf de la tabla"/>  
+                        <prime:dataExporter type="pdf" target="tbl" fileName="Resoluciones_Academicas"/>  
+                    </h:commandLink>  
+                     </h:panelGrid>  
+
+         
+
+            </h:form>
+
+
+
+            <h:form>
+
+                <prime:growl id="messages" />
+
+
+                <prime:confirmDialog message="¿Está seguro que desea eliminar la resolucion?"
+                                     severity="alert" widgetVar="confirmation">
+
+                    <h:commandButton action="#{resolucionesController.performDestroy()}" value="SI"  onclick="confirmation.hide()"  >
+                    </h:commandButton>
+                    <h:commandButton action="#{resolucionesController.limpiarCurrent()}" value="NO" onclick="confirmation.hide()"  />
+
+                </prime:confirmDialog>
+
+
+                <prime:confirmDialog message="¿Está seguro que desea modificar la resolucion?"
+                                     severity="alert" widgetVar="dlg2">
+
+                    <h:commandButton  value="SI"  onclick="dlg.show"  
+                                      />
+                    <h:commandButton action="#{resolucionesController.limpiarCurrent()}" value="NO" onclick="dlg2.hide()"   />
+
+                </prime:confirmDialog>
+
+             
+            </h:form>
+            
+            
+
+        </prime:panel>
+
+
+
+
+
+        <prime:panel header="#{bundle.TitleOtros}">
+
+            <h:panelGrid columns="2" cellpadding="0" style="width:100%">
+
+
+                <h:graphicImage url="./resources/imagenes/tick.png"  />
+                <h:link  outcome="Detalle"  value="Crear/Modificar/Ver Malla Curricular" accesskey="i" title="#{bundle.BreadCrumbDetalleResolucion_title}" />
+
+
+
+            </h:panelGrid>
+
+        </prime:panel>
+
+
+
+    </ui:define>
+
+</ui:composition>

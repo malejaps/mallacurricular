@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/templateProgramacion.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:prime="http://primefaces.prime.com.tr/ui"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:define name="content" >
+        <h:form>
+            <prime:breadCrumb >
+                <prime:menuitem value="Categories" url="index.xhtml" />
+                <prime:menuitem value="Ayuda" url="AyudaIndex.xhtml" />
+
+
+            </prime:breadCrumb>
+
+            <prime:separator  />
+
+            <prime:panel header="AYUDA">
+                <h:panelGrid columns="2" cellpadding="0" style="width:100%">
+
+                    <h:graphicImage url="./resources/imagenes/tick.png"  />
+                    <h:link accesskey="c" outcome="AyudaA" value="Combinaciones de Teclado"  title="Ver combinaciones de teclado que se pueden utilizar en la aplicación" />                              
+
+                    <h:graphicImage url="./resources/imagenes/tick.png"  />
+                    <h:link accesskey="g" outcome="AyudaB" value="Glosario"   title="Ver definiciones de palabras" />
+
+                    <h:graphicImage url="./resources/imagenes/tick.png"  />
+                    <h:link accesskey="a" outcome="AyudaC" value="Ayuda de la aplicación"   title="Ver ayuda de cómo usar la aplicación" />
+                </h:panelGrid>
+            </prime:panel>
+
+
+        </h:form>
+
+    </ui:define>
+
+</ui:composition>

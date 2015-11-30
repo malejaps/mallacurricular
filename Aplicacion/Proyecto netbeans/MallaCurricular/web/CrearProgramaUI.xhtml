@@ -1,0 +1,151 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/templateMalla.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:prime="http://primefaces.prime.com.tr/ui"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:define name="content">
+
+        <prime:breadCrumb >
+            <prime:menuitem value="Categories" url="index.xhtml" />
+            <prime:menuitem value="#{bundle.BreadCrumbProgramas}" url="CrearProgramaUI.xhtml" />
+
+
+        </prime:breadCrumb>
+
+        <prime:separator  />
+
+
+        <prime:panel id="box-form" header="PROGRAMAS" rendered="#{!ProgramasBean.newPrograma}">
+            <h:form>
+
+
+                <h:panelGrid columns="2" cellpadding="5">
+                    <h:outputLabel value="Código:" for="codProg"  style="text-align: center" />
+                    <prime:keyboard id="codProg" value="#{programasController.selected.codProg}" title="#{bundle.CreateProgramasTitle_codProg}" required="true" requiredMessage="#{bundle.CreateProgramasRequiredMessage_codProg}"
+                                    showMode="button" buttonImageOnly="true" buttonImage="./resources/imagenes/teclado.jpg"/>
+
+
+                    <h:outputLabel value="Nombre:" for="nomProg" style="text-align: right"/>
+                    <prime:keyboard id="nomProg" value="#{programasController.selected.nomProg}" title="#{bundle.CreateProgramasTitle_nomProg}" required="true" requiredMessage="#{bundle.CreateProgramasRequiredMessage_nomProg}"
+                                    showMode="button" buttonImageOnly="true" buttonImage="./resources/imagenes/teclado.jpg"/>
+
+
+                </h:panelGrid>
+
+
+                <h:commandLink accesskey="c" action="#{programasController.create}" value="" title="#{bundle.TitleCrear}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <h:graphicImage url="./resources/imagenes/save.png" styleClass="icon" width="48px" height="48px" />
+                </h:commandLink>
+
+                <h:commandLink accesskey="m" action="#{programasController.update()}" value="" title="#{bundle.TitleModificar}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <h:graphicImage url="./resources/imagenes/edit.png" styleClass="icon" width="48px" height="48px" />
+                </h:commandLink>
+                <h:commandLink accesskey="l" action="#{programasController.mostrarModificar()}" value="" title="Borrar datos escritos">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <h:graphicImage url="./resources/imagenes/limpiar.jpg" styleClass="icon" width="48px" height="48px" />
+                </h:commandLink>
+
+
+            </h:form>
+        </prime:panel>
+
+        <h:form id="tabla">
+            <prime:panel header="#{bundle.TitleProgramas}"  >
+                <prime:dataTable id="tbl" var="item" value="#{programasController.items}"
+                                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PagesLink} {NextPageLink} {LastPageLink}"     
+                                 paginator="true" rows="5"
+                                 >
+                    <prime:column filterBy=""
+                                  filterMatchMode="startsWith">
+                        <f:facet name="header">
+                            <h:outputText value="Codigo" />  
+
+                        </f:facet> 
+
+
+                        <h:outputText value="#{item.codProg}" />
+                    </prime:column>
+
+                    <prime:column filterBy=""
+                                  headerText="Nombre" filterMatchMode="startsWith">
+                            <f:facet name="header">
+                            <h:outputText value="Nombre" />  
+
+                        </f:facet> 
+                        <h:outputText value="#{item.nomProg}" />
+                    </prime:column>
+
+
+                    <prime:column filterBy=""
+                                  headerText=""  >
+                        <prime:commandLink  onclick="confirmation.show()" type="button" title="#{bundle.TitleEliminar}" >
+                            <h:graphicImage url="./resources/imagenes/eliminar.png"  />
+                            <f:setPropertyActionListener value="#{item}" target="#{programasController.current}"/>
+                        </prime:commandLink>
+
+                        <prime:commandLink onclick="dlg2.show()" type="button" title="Modificar el programa" >
+                            <h:graphicImage url="./resources/imagenes/edit.png"  />
+                            <f:setPropertyActionListener value="#{item}" target="#{programasController.current}"/>   
+
+                        </prime:commandLink>
+
+                    </prime:column>
+                </prime:dataTable>
+
+
+
+
+                <prime:confirmDialog message="¿Está seguro que desea eliminar el programa?"
+                                     severity="alert" widgetVar="confirmation">
+
+                    <h:commandButton action="#{programasController.performDestroy()}" value="SI"  onclick="confirmation.hide()"  
+                                     />
+                    <h:commandButton action="#{programasController.mostrarModificar()}" value="NO" onclick="confirmation.hide()"  />
+
+                </prime:confirmDialog>
+
+
+
+                <prime:confirmDialog message="¿Está seguro que desea modificar el programa?"
+                                     severity="alert" widgetVar="dlg2">
+
+                    <h:commandButton  value="SI"  onclick="dlg.show"  
+                                      />
+                    <h:commandButton action="#{programasController.mostrarModificar()}" value="NO" onclick="dlg2.hide()" />
+
+                </prime:confirmDialog>
+
+                <h:panelGrid columns="2">  
+
+                    <h:commandLink>  
+                        <prime:graphicImage value="./resources/imagenes/ico_excel.png" title="Guardar un archivo en excel de la tabla" />  
+                        <prime:dataExporter type="xls" target="tbl" fileName="Programas_Academicos" />  
+                    </h:commandLink>  
+
+                    <h:commandLink>  
+                        <prime:graphicImage value="./resources/imagenes/pdf.jpg" title="Guardar un archivo en pdf de la tabla"/>  
+                        <prime:dataExporter type="pdf" target="tbl" fileName="Programas_Academicos"/>  
+                    </h:commandLink>  
+
+
+                </h:panelGrid> 
+
+            </prime:panel>
+
+
+
+
+
+
+
+        </h:form > 
+
+
+        <prime:growl id="messages" />
+
+
+    </ui:define>
+
+</ui:composition>

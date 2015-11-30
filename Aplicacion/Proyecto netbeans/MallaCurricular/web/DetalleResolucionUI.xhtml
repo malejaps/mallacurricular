@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/templateMalla.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:prime="http://primefaces.prime.com.tr/ui"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:define name="content">
+
+
+
+        <prime:breadCrumb >
+            <prime:menuitem value="Categories" url="index.xhtml" />
+            <prime:menuitem value="#{bundle.BreadCrumbResoluciones}" url="BuscarResolucionUI.xhtml" />
+            <prime:menuitem value="#{bundle.BreadCrumbDetalleResolucion}" url="DetalleResolucionUI.xhtml" />
+
+        </prime:breadCrumb>
+
+        <prime:separator  />
+        <h:form >
+
+            <prime:panel id="box-form2" header="#{bundle.TitleMallaCurricular}" rendered="#{!ResolucionBean.newMalla}" >
+
+
+
+                <h:panelGrid columns="2" cellpadding="5">
+                    <h:outputLabel value="Código:" for="codMalla" />
+                    <prime:keyboard id="codMalla" value="#{mallaController.selected.codMalla}" title="Ingresar el codigo de la malla curricular" required="true" requiredMessage="Debe ingresar el codigo de la malla curricular"
+                                    showMode="button" buttonImageOnly="true" buttonImage="./resources/imagenes/teclado.jpg"/>
+
+                    <h:outputLabel value="Resolucion:" for="codResol"/>
+                    <h:selectOneMenu  id="codResol2" value="#{mallaController.selected.codResol}"  title="Seleccionar una resolucion" required="true" requiredMessage="Debe seleccionar la resolucion">
+                        <f:selectItems value="#{resolucionesController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>                 
+
+
+                    <h:outputLabel value="Semestre:" for="codSem" /> 
+                    <h:selectOneMenu  id="semestre" value="#{mallaController.selected.semestre}"  title="Seleccionar un semestre" required="true" requiredMessage="Debe seleccionar el semestre">
+                        <f:selectItems value="#{semestresController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>  
+
+
+                    <h:outputLabel value="Asignatura:" for="codAsig"/>
+                    <h:selectOneMenu  id="codAsig" value="#{mallaController.selected.codAsig}"  title="Seleccionar una asignatura" required="true" requiredMessage="Debe seleccionar la asignatura">
+                        <f:selectItems value="#{asignaturasController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+
+
+
+                </h:panelGrid >
+
+
+                <h:commandLink action="#{mallaController.create}"  accesskey="c" title="Crear la malla curricular"  > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <h:graphicImage url="./resources/imagenes/save.png" styleClass="icon" width="48px" height="48px" />
+                </h:commandLink>
+                <h:commandLink action="#{mallaController.update}"  accesskey="m" title="Modificar la malla curricular"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <h:graphicImage url="./resources/imagenes/edit.png" styleClass="icon" width="48px" height="48px" />
+                </h:commandLink>
+                <h:commandLink accesskey="l" action="#{mallaController.mostrarModificar()}" value="" title="Borrar los datos escritos">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <h:graphicImage url="./resources/imagenes/limpiar.jpg" styleClass="icon" width="48px" height="48px" />
+                </h:commandLink>
+
+
+
+
+            </prime:panel>
+
+
+        </h:form>
+
+
+
+        <prime:panel header="#{bundle.TitleDetalleResolucion}">
+
+
+            <h:form>
+                <prime:dataTable id="tbl1" var="item" value="#{mallaController.items}" 
+                                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PagesLink} {NextPageLink} {LastPageLink}"     
+                                 paginator="true" rows="3"
+                                 >  
+                    <f:facet name="header">  
+                        Malla Curricular 
+                    </f:facet>  
+
+
+
+                    <prime:column headerText="Resolucion" filterBy="#{item.codResol}"   filterMatchMode="contains" >
+                        <f:facet name="header">
+                            <h:outputText value="Resolucion" />  
+
+                        </f:facet> 
+                        <h:outputText value="#{item.codResol}" style="text-align: center"/>
+                    </prime:column> 
+                    <prime:column  headerText="Semestre" filterBy="#{item.semestre}"   filterMatchMode="contains"> 
+                        <f:facet name="header">
+                            <h:outputText value="Semestre" />  
+
+                        </f:facet> 
+                        <h:outputText value="#{item.semestre}" style="text-align: center"/>
+                    </prime:column>                  
+                    <prime:column headerText="Asignatura" filterBy="#{item.codAsig}"   filterMatchMode="contains" >
+                        <f:facet name="header">
+                            <h:outputText value="Asignatura" />  
+
+                        </f:facet> 
+                        <h:outputText value="#{item.codAsig}" style="text-align: center"/>
+
+                    </prime:column>  
+
+
+                    <prime:column>
+                        <prime:commandLink onclick="dlg2.show()" type="button" title="Modificar la malla" >
+                            <h:graphicImage url="./resources/imagenes/edit.png"  />
+                            <f:setPropertyActionListener value="#{item}" target="#{mallaController.current}"/>   
+
+                        </prime:commandLink>
+                    </prime:column>
+
+                </prime:dataTable>
+
+                <prime:confirmDialog message="¿Está seguro que desea modificar la malla?"
+                                     severity="alert" widgetVar="dlg2">
+
+                    <h:commandButton  value="SI"  onclick="dlg.show"  
+                                      />
+                    <h:commandButton action="#{mallaController.mostrarModificar()}" value="NO" onclick="dlg2.hide()"/>
+
+                </prime:confirmDialog>
+
+                
+                     <h:panelGrid columns="2">
+
+                    <h:commandLink>  
+                        <prime:graphicImage value="./resources/imagenes/ico_excel.png" title="Guardar un archivo en excel de la tabla"/>  
+                        <prime:dataExporter type="xls" target="tbl1" fileName="Asignaturas" />  
+                    </h:commandLink>  
+
+                    <h:commandLink>  
+                        <prime:graphicImage value="./resources/imagenes/pdf.jpg" title="Guardar un archivo en pdf de la tabla"/>  
+                        <prime:dataExporter type="pdf" target="tbl1" fileName="Asignaturas"/>  
+                    </h:commandLink> 
+                </h:panelGrid>
+
+
+
+
+
+            </h:form>
+
+
+            <prime:separator/> 
+
+            <h:form>
+
+                <prime:dataTable id="tbl" var="item2" value="#{asignaturasController.items}"
+                                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PagesLink} {NextPageLink} {LastPageLink}"     
+                                 paginator="true" rows="5"
+                                 >  
+                    <f:facet name="header">  
+                        Detalle Asignaturas 
+                    </f:facet>  
+
+
+
+                    <prime:column headerText="Código" filterBy=""   filterMatchMode="contains" >
+                           <f:facet name="header">
+                            <h:outputText value="Codigo" />  
+
+                        </f:facet>
+                        <h:outputText value="#{item2.codAsig}" style="text-align: center"/>
+                    </prime:column> 
+                
+                    
+                    
+                    <prime:column  headerText="Nombre" filterBy=""   filterMatchMode="contains" >
+                           <f:facet name="header">
+                            <h:outputText value="Nombre" />  
+
+                        </f:facet>
+                        <h:outputText value="#{item2.nomAsig}" style="text-align: center"/>
+                    </prime:column> 
+                    
+                    <prime:column headerText="Créditos" filterBy=""   filterMatchMode="contains" >
+                           <f:facet name="header">
+                            <h:outputText value="Creditos" />  
+
+                        </f:facet>
+                        <h:outputText value="#{item2.creditos}" style="text-align: center"/>
+
+                    </prime:column> 
+                    <prime:column headerText="Horas" filterBy=""   filterMatchMode="contains" >
+                           <f:facet name="header">
+                            <h:outputText value="Horas" />  
+
+                        </f:facet>
+                        <h:outputText value="#{item2.intensidadH}" style="text-align: center"/>
+
+                    </prime:column> 
+
+
+
+
+
+                </prime:dataTable>
+
+
+                <h:panelGrid columns="2">
+
+                    <h:commandLink>  
+                        <prime:graphicImage value="./resources/imagenes/ico_excel.png" title="Guardar un archivo en excel de la tabla"/>  
+                        <prime:dataExporter type="xls" target="tbl" fileName="Detalle_Asignaturas" />  
+                    </h:commandLink>  
+
+                    <h:commandLink>  
+                        <prime:graphicImage value="./resources/imagenes/pdf.jpg" title="Guardar un archivo en pdf de la tabla"/>  
+                        <prime:dataExporter type="pdf" target="tbl" fileName="Detalle_Asignaturas"/>  
+                    </h:commandLink> 
+                </h:panelGrid>
+
+            </h:form>
+
+
+        </prime:panel>
+
+
+
+        <prime:growl id="messages" />
+
+
+    </ui:define>
+
+</ui:composition>

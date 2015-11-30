@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/templateProgramacion.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:prime="http://primefaces.prime.com.tr/ui"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:define name="content" >
+        <h:form>
+            <prime:breadCrumb >
+                <prime:menuitem value="Categories" url="index.xhtml" />
+                <prime:menuitem value="Ayuda" url="AyudaIndex.xhtml" />
+                <prime:menuitem value="Ayuda de la Aplicación" url="AyudaAplicacion.xhtml" />
+
+
+            </prime:breadCrumb>
+
+            <prime:separator  />
+
+            <prime:panel header="Ayuda de la aplicación">
+
+
+                <prime:fieldset legend="Crear/Modificar/Eliminar/Ver " toggleable="true" toggleSpeed="500" >
+                    <h:panelGrid columns="2" cellpadding="10">
+
+                   
+
+                        <p style="text-align: justify" >Crear o modificar: ingresar todos los datos requeridos y luego dar clic en el icono crear o modificar. Si va a modificar el codigo o el identificador de una tabla al finalizar de clic en crear.
+                            Modificar: clic en el icono modificar en la tabla. Eliminar:clic en el icono eliminar en la tabla.
+                        </p>
+
+                    </h:panelGrid>
+                </prime:fieldset>
+
+
+    
+
+
+        
+
+
+
+                <prime:fieldset legend="Navegación " toggleable="true" toggleSpeed="500" >
+                    <h:panelGrid columns="2" cellpadding="10">
+
+                        <p style="text-align: justify" >
+
+                            Para ir de una página a otra de clic en los enlaces de la barra superior de cada contenido o en los enlaces del menú principal del lado izquierdo.
+
+                        </p>
+
+
+                    </h:panelGrid>
+                </prime:fieldset>
+                
+                
+                    <prime:fieldset legend="Reportes " toggleable="true" toggleSpeed="500" >
+                    <h:panelGrid columns="2" cellpadding="10">
+
+                   
+
+                        <p style="text-align: justify" >Para generar reportes en pdf o excel de la información, de clic en los iconos que estan debajo de cada tabla.
+                        </p>
+
+                    </h:panelGrid>
+                </prime:fieldset>
+
+
+
+            </prime:panel>
+
+
+
+
+        </h:form>
+
+    </ui:define>
+
+</ui:composition>

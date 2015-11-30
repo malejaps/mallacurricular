@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateDocentesTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateDocentesLabel_codDoc}" for="codDoc" />
+                    <h:inputText id="codDoc" value="#{docentesController.selected.codDoc}" title="#{bundle.CreateDocentesTitle_codDoc}" required="true" requiredMessage="#{bundle.CreateDocentesRequiredMessage_codDoc}"/>
+                    <h:outputLabel value="#{bundle.CreateDocentesLabel_cedula}" for="cedula" />
+                    <h:inputText id="cedula" value="#{docentesController.selected.cedula}" title="#{bundle.CreateDocentesTitle_cedula}" required="true" requiredMessage="#{bundle.CreateDocentesRequiredMessage_cedula}"/>
+                    <h:outputLabel value="#{bundle.CreateDocentesLabel_nombre}" for="nombre" />
+                    <h:inputText id="nombre" value="#{docentesController.selected.nombre}" title="#{bundle.CreateDocentesTitle_nombre}" required="true" requiredMessage="#{bundle.CreateDocentesRequiredMessage_nombre}"/>
+                    <h:outputLabel value="#{bundle.CreateDocentesLabel_dia}" for="dia" />
+                    <h:inputText id="dia" value="#{docentesController.selected.dia}" title="#{bundle.CreateDocentesTitle_dia}" required="true" requiredMessage="#{bundle.CreateDocentesRequiredMessage_dia}"/>
+                    <h:outputLabel value="#{bundle.CreateDocentesLabel_horaInicio}" for="horaInicio" />
+                    <h:inputText id="horaInicio" value="#{docentesController.selected.horaInicio}" title="#{bundle.CreateDocentesTitle_horaInicio}" required="true" requiredMessage="#{bundle.CreateDocentesRequiredMessage_horaInicio}"/>
+                    <h:outputLabel value="#{bundle.CreateDocentesLabel_horaFin}" for="horaFin" />
+                    <h:inputText id="horaFin" value="#{docentesController.selected.horaFin}" title="#{bundle.CreateDocentesTitle_horaFin}" required="true" requiredMessage="#{bundle.CreateDocentesRequiredMessage_horaFin}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{docentesController.create}" value="#{bundle.CreateDocentesSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{docentesController.prepareList}" value="#{bundle.CreateDocentesShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.CreateDocentesIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

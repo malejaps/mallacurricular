@@ -1,0 +1,328 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/templateProgramacion.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:prime="http://primefaces.prime.com.tr/ui"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:define name="content">
+
+        <prime:breadCrumb >
+            <prime:menuitem value="Categories" url="index.xhtml" />
+            <prime:menuitem value="Programacion Academica" url="CrearProgramacionAcademicaUI.xhtml" />
+
+
+        </prime:breadCrumb>
+
+        <prime:separator  />
+
+
+        <prime:panel id="box-form" header="PROGRAMACION ACADEMICA" rendered="#{!ProgramacionBean.newProgramacion}">
+            <h:form>
+
+
+                <h:panelGrid columns="2" cellpadding="5">
+                    <h:outputLabel value="Código:" for="codProgramacion"  style="text-align: center" />
+                    <prime:keyboard id="codProgramacion" value="#{programacionController.selected.codProgramacion}" title="Escribir el codigo consecutivo de la programacion académica. Ej. 01, 02. Numeros ordenados de acuerdo a las filas de la tabla" required="true" requiredMessage="Debe escribir un codigo de la programacion académica"
+                                    showMode="button" buttonImageOnly="true" buttonImage="./resources/imagenes/teclado.jpg"/>
+
+
+                    <h:outputLabel value="Programa" for="codProg" style="text-align: right"/>
+                    <h:selectOneMenu  id="codProg" value="#{programacionController.selected.codProg}"  title="Seleccionar el programa academico" required="true" requiredMessage="Debe seleccionar un programa academico">
+                        <f:selectItems value="#{programasController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="Asignatura:" for="codAsig"  style="text-align: center" />
+                    <h:selectOneMenu  id="codAsig" value="#{programacionController.selected.codAsig}"  title="Seleccionar la asignatura" required="true" requiredMessage="Debe seleccionar una asignatura">
+                        <f:selectItems value="#{asignaturasController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+
+                    <h:outputLabel value="Docente" for="docente" style="text-align: center"/>
+                    <h:selectOneMenu  id="codDoc" value="#{programacionController.selected.codDoc}"  title="Seleccionar el Docente" required="true" requiredMessage="Debe seleccionar un Docente">
+                        <f:selectItems value="#{docentesController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+
+
+                    <h:outputLabel value="Dia:" for="dia"  style="text-align: center" />
+                    <prime:inputText id="dia" value="#{programacionController.selected.dia}" title="Ingresar el día en que se dictara la asignatura" required="true" requiredMessage="Debe escribir el dia en que sera dictada la asignatura"
+                                     />
+
+
+                    <h:outputLabel value="Hora de Inicio" for="hora_inicio"/>
+                    <prime:inputMask  value="#{programacionController.selected.horaInicio}" mask="99:99" title="Ingresar desde que hora es la clase a programar" required="true" requiredMessage="Debe ingresar desde que hora es la clase a programar"/>   
+
+                    <h:outputLabel value="Hora de Finalizacion" for="hora_fin"/>
+                    <prime:inputMask  value="#{programacionController.selected.horaFin}" mask="99:99" title="Ingresar hasta que hora es la clase a programar" required="true" requiredMessage="Debe ingresar hasta que hora es la clase a programar"/>   
+
+
+
+                    <h:outputLabel value="Periodo:" for="periodo"  style="text-align: center" />
+                    <prime:keyboard id="periodo" value="#{programacionController.selected.periodo}" title="Ingresar el Periodo Academico, por ejemplo 2010-1 o 2010-2" required="true" requiredMessage="Debe escribir un periodo academico"
+                                    showMode="button" buttonImageOnly="true" buttonImage="./resources/imagenes/teclado.jpg"/>
+
+                    <h:graphicImage url="./resources/imagenes/tick.png"  />
+                    <h:link  outcome="Disponibilidad" value="Modificar disponibilidad del docente"  title="#{bundle.BreadCrumbDetalleResolucion_title}" />
+
+
+
+
+                </h:panelGrid>
+
+
+
+
+                <h:commandLink accesskey="c" action="#{programacionController.create}" value="" title="Crear la programacion academica">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <h:graphicImage url="./resources/imagenes/save.png" styleClass="icon" width="48px" height="48px" />
+                </h:commandLink>
+
+                <h:commandLink accesskey="m" action="#{programacionController.update()}" value="" title="Modificar la programacion académica">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <h:graphicImage url="./resources/imagenes/edit.png" styleClass="icon" width="48px" height="48px" />
+                </h:commandLink>
+                <h:commandLink accesskey="l" action="#{programacionController.mostrarModificar()}" value="" title="Borrar datos escritos">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <h:graphicImage url="./resources/imagenes/limpiar.jpg" styleClass="icon" width="48px" height="48px" />
+                </h:commandLink>
+
+
+
+
+            </h:form>
+        </prime:panel>
+
+
+
+
+        <h:form id="tabla2">
+
+            <prime:panel header="DISPONIBILIDAD DOCENTES"  >
+                <prime:dataTable id="tbl" var="item" value="#{docentesController.items}"
+                                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PagesLink} {NextPageLink} {LastPageLink}"     
+                                 paginator="true" rows="3"
+
+                                 >
+
+
+                    <prime:column 
+                        sortBy="#{item.docente}"
+
+                        filterMatchMode="startsWith">
+                        <f:facet name="header">
+                            <h:outputText value="Docente" />  
+
+                        </f:facet> 
+                        <h:outputText value="#{item.docente}" />
+                    </prime:column>
+
+
+
+
+                    <prime:column 
+                        filterMatchMode="startsWith">
+                        <f:facet name="header">
+                            <h:outputText value="Dia" />  
+
+                        </f:facet> 
+                        <h:outputText value="#{item.dia}" />
+                    </prime:column>
+
+
+                    <prime:column 
+                        filterMatchMode="startsWith">
+                        <f:facet name="header">
+                            <h:outputText value="Desde" />  
+
+                        </f:facet> 
+                        <h:outputText value="#{item.horaInicio}" />
+                    </prime:column>
+
+
+
+                    <prime:column 
+                        filterMatchMode="startsWith">
+                        <f:facet name="header">
+                            <h:outputText value="Hasta" />  
+
+                        </f:facet> 
+                        <h:outputText value="#{item.horaFin}" />
+                    </prime:column>
+
+
+                    <prime:column filterBy=""
+                                  sortBy=""
+                                  filterMatchMode="startsWith">
+                        <f:facet name="header">
+                            <h:outputText value="Disp." />  
+
+                        </f:facet> 
+
+
+                        <h:outputText value="#{item.disponibilidad}" />
+                    </prime:column>
+
+
+                </prime:dataTable>
+
+
+
+
+                <h:panelGrid columns="2" >  
+
+                    <h:commandLink>  
+                        <prime:graphicImage value="./resources/imagenes/ico_excel.png" title="Guardar un archivo en excel de la tabla"/>  
+                        <prime:dataExporter type="xls" target="tbl" fileName="Disponilidad_Docentes" />  
+                    </h:commandLink>  
+
+                    <h:commandLink>  
+                        <prime:graphicImage value="./resources/imagenes/pdf.jpg" title="Guardar un archivo en pdf de la tabla"/>  
+                        <prime:dataExporter type="pdf" target="tbl" fileName="Disponibilidad_Docentes"/>  
+                    </h:commandLink>  
+
+
+                </h:panelGrid> 
+
+            </prime:panel>
+
+        </h:form>
+
+        <h:form id="tabla">
+
+            <prime:panel header="PROGRAMACIONES ACADEMICAS"  >
+                <prime:dataTable id="tbl1" var="item" value="#{programacionController.items}"
+                                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PagesLink} {NextPageLink} {LastPageLink}"     
+                                 paginator="true" rows="4"
+                                 >
+
+
+                    <prime:column filterBy=""
+                                  headerText="Programa"
+                                  >
+                        <f:facet name="header">
+                            <h:outputText value="Prog." />  
+
+                        </f:facet> 
+
+
+                        <h:outputText value="#{item.codProg}" />
+                    </prime:column>
+
+                    <prime:column filterBy=""
+                                  headerText="Asignatura" >
+                        <f:facet name="header">
+                            <h:outputText value="Asig." />  
+
+                        </f:facet> 
+                        <h:outputText value="#{item.codAsig}" />
+                    </prime:column>
+
+                    <prime:column filterBy=""
+                                  headerText="Docente" filterMatchMode="startsWith">
+                        <f:facet name="header">
+                            <h:outputText value="Docen." />  
+
+                        </f:facet> 
+                        <h:outputText value="#{item.codDoc}" />
+                    </prime:column>
+
+
+
+
+                    <prime:column filterBy=""
+                                  headerText="Dia" filterMatchMode="startsWith">
+                        <f:facet name="header">
+                            <h:outputText value="Dia" />  
+
+                        </f:facet> 
+                        <h:outputText value="#{item.dia}" />
+                    </prime:column>
+
+
+                    <prime:column filterBy=""
+                                  headerText="Hora de inicio" filterMatchMode="startsWith">
+                        <f:facet name="header">
+                            <h:outputText value="Desde" />  
+
+                        </f:facet> 
+                        <h:outputText value="#{item.horaInicio}" />
+                    </prime:column>
+
+                    <prime:column filterBy=""
+                                  headerText="Hora de Finalizacion" filterMatchMode="startsWith">
+                        <f:facet name="header">
+                            <h:outputText value="Hasta" />  
+
+                        </f:facet> 
+                        <h:outputText value="#{item.horaFin}" />
+                    </prime:column>
+
+
+
+                    <prime:column filterBy=""
+                                  headerText=""  >
+                        <prime:commandLink  onclick="confirmation.show()" type="button" title="Eliminar la programacion academica" >
+                            <h:graphicImage url="./resources/imagenes/eliminar.png"  />
+                            <f:setPropertyActionListener value="#{item}" target="#{programacionController.current}"/>
+                        </prime:commandLink>
+
+                        <prime:commandLink onclick="dlg2.show()" type="button" title="Modificar la programacion academica" >
+                            <h:graphicImage url="./resources/imagenes/edit.png"  />
+                            <f:setPropertyActionListener value="#{item}" target="#{programacionController.current}"/>   
+
+                        </prime:commandLink>
+
+                    </prime:column>
+                </prime:dataTable>
+
+
+
+
+                <prime:confirmDialog message="¿Está seguro que desea eliminar la programacion academica?"
+                                     severity="alert" widgetVar="confirmation">
+
+                    <h:commandButton action="#{programacionController.performDestroy()}" value="SI"  onclick="confirmation.hide()"  
+                                     />
+                    <h:commandButton action="#{programacionController.mostrarModificar()}" value="NO" onclick="confirmation.hide()"  />
+
+                </prime:confirmDialog>
+
+
+
+                <prime:confirmDialog message="¿Está seguro que desea modificar la programacion acaemica?"
+                                     severity="alert" widgetVar="dlg2">
+
+                    <h:commandButton  value="SI"  onclick="dlg.show"  
+                                      />
+                    <h:commandButton action="#{programacionController.mostrarModificar()}" value="NO" onclick="dlg2.hide()" />
+
+                </prime:confirmDialog>
+
+                <h:panelGrid columns="2">  
+
+                    <h:commandLink>  
+                        <prime:graphicImage value="./resources/imagenes/ico_excel.png" title="Guardar un archivo en excel de la tabla" />  
+                        <prime:dataExporter type="xls" target="tbl1" fileName="Programacion_Academica" />  
+                    </h:commandLink>  
+
+                    <h:commandLink>  
+                        <prime:graphicImage value="./resources/imagenes/pdf.jpg" title="Guardar un archivo en pdf de la tabla"/>  
+                        <prime:dataExporter type="pdf" target="tbl1" fileName="Programacion_Academica"/>  
+                    </h:commandLink>  
+
+
+                </h:panelGrid> 
+
+            </prime:panel>
+
+
+
+        </h:form > 
+
+
+
+
+
+
+        <prime:growl id="messages" />
+
+
+    </ui:define>
+
+</ui:composition>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene Scope="Project" version="2">
+    <Scope Scope="Faces Configuration Only"/>
+    <Scope Scope="Project">
+        <Node id="AyudaTeclado.xhtml" x="95" y="32" zoom="true"/>
+        <Node id="ResolucionUI.xhtml" x="707" y="88" zoom="true"/>
+        <Node id="AyudaIndex.xhtml" x="523" y="-75" zoom="true"/>
+        <Node id="CrearProgramaUI.xhtml" x="985" y="-260" zoom="true"/>
+        <Node id="templateviejo.xhtml" x="150" y="150" zoom="true"/>
+        <Node id="templateProgramacion.xhtml" x="400" y="150" zoom="true"/>
+        <Node id="CrearProgramacionAcademicaUI.xhtml" x="103" y="-166" zoom="true"/>
+        <Node id="AcercaDe.xhtml" x="279" y="-61" zoom="true"/>
+        <Node id="AyudaAplicacion.xhtml" x="450" y="85" zoom="false"/>
+        <Node id="DetalleResolucionUI.xhtml" x="841" y="48" zoom="true"/>
+        <Node id="DisponibilidadDocentesUI.xhtml" x="837" y="-191" zoom="true"/>
+        <Node id="docentes/Create.xhtml" x="150" y="450" zoom="true"/>
+        <Node id="docentes/View.xhtml" x="150" y="300" zoom="true"/>
+        <Node id="docentes/Edit.xhtml" x="400" y="300" zoom="true"/>
+        <Node id="index.xhtml" x="467" y="-282" zoom="true"/>
+        <Node id="AyudaGlosario.xhtml" x="324" y="32" zoom="true"/>
+        <Node id="docentes/List.xhtml" x="650" y="150" zoom="true"/>
+        <Node id="templateMalla.xhtml" x="150" y="150" zoom="true"/>
+        <Node id="BuscarResolucionUI.xhtml" x="728" y="-128" zoom="true"/>
+        <Node id="ErrorLogin.html" x="38" y="-119" zoom="true"/>
+        <Node id="Login.html" x="79" y="-248" zoom="false"/>
+    </Scope>
+    <Scope Scope="All Faces Configurations"/>
+</Scene>

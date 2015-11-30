@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/templateProgramacion.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:prime="http://primefaces.prime.com.tr/ui"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:define name="content" >
+        <h:form>
+            <prime:breadCrumb >
+                <prime:menuitem value="Categories" url="index.xhtml" />
+                <prime:menuitem value="#{bundle.BreadCrumbAyuda}" url="AyudaIndex.xhtml" />
+                <prime:menuitem value="Glosario" url="AyudaGlosario.xhtml" />
+
+
+            </prime:breadCrumb>
+
+            <prime:separator  />
+
+            <prime:panel header="GLOSARIO">
+
+                <h:panelGrid columns="2" cellpadding="10" >
+
+                    <p style="color:#666666;font-weight: bold" >
+                        Malla curricular:</p>
+                    <p style="text-align: justify" >Sistema externo donde se maneja todo lo referente a la malla curricular (pensum), la creación de resoluciones, carreras, y mostrar las materias que se verán en cada semestre correspondiente a una carrera.
+                    </p>
+
+                    <p style="color:#666666;font-weight: bold" >
+                        Resolución:</p>
+                    <p style="text-align: justify" >
+                        Se crea para garantizar la existencia de una carrera en la Universidad del Valle. Cada carrera tiene una o más resoluciones.
+                    </p>
+                    <p style="color:#666666;font-weight: bold" >
+                        Intensidad horaria:</p>
+                    <p style="text-align: justify" >
+                        Cantidad de horas a la semana de clase que brinda cada asignatura.
+                    </p>
+                    <p style="color:#666666;font-weight: bold" >
+                        Crédito:</p> 
+                    <p style="text-align: justify" >
+                        Unidad de medida del trabajo académico que debe realizar el estudiante en cada una de las actividades formativas establecidas como requisitos para la obtención de título en un programa de pregrado. Un  crédito  académico  equivale  a  48  horas  de trabajo        académico del estudiante. 
+                    </p>
+                    <p style="color:#666666;font-weight: bold" >
+                        Programa académico:</p>
+                    <p style="text-align: justify" >
+                        Programa de estudio de la Universidad del Valle, correspondiente a un pregrado, con duración de 6 o 10 semestres.
+                    </p>
+                    <p style="color:#666666;font-weight: bold" >
+                        Disponibilidad del docente:</p>
+                    <p style="text-align: justify" >
+                        Horas disponibles en la semana para enseñar en la Universidad.
+                    </p>
+                    <p style="color:#666666;font-weight: bold" >
+                        Programación académica:</p>
+                    <p style="text-align: justify" >
+                        Programación del horario de las asignaturas de un semestre perteneciente a un programa académico.
+                    </p>
+
+
+
+
+                </h:panelGrid>
+
+            </prime:panel>
+
+
+
+
+        </h:form>
+
+    </ui:define>
+
+</ui:composition>
+

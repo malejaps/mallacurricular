@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/templateProgramacion.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:prime="http://primefaces.prime.com.tr/ui"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:define name="content" >
+        <h:form>
+            <prime:breadCrumb >
+                <prime:menuitem value="Categories" url="index.xhtml" />
+                <prime:menuitem value="#{bundle.BreadCrumbAcercaDe}" url="AcercaDe.xhtml" />
+
+
+            </prime:breadCrumb>
+
+            <prime:separator  />
+
+            <prime:fieldset >
+                <h:panelGrid columns="2" cellpadding="10">
+                    <prime:graphicImage value="./resources/imagenes/univalle.jpg" />
+                    <h:outputText
+                        value="Aplicacion web que gestiona el manejo de la malla curricular
+                        correspondiente a los diferentes programas academicos de la Universidad del Valle-Sede Palmira."/>
+                </h:panelGrid>
+
+                <prime:fieldset legend="Version del producto" toggleable="true" toggleSpeed="500">
+
+                    <h:panelGrid columns="2" cellpadding="10">
+                        <h:outputText value="Versión del producto: 1.2"/>
+                    </h:panelGrid>
+                </prime:fieldset>
+
+                <prime:fieldset legend="Creadores del producto" toggleable="true" toggleSpeed="500">
+
+                    <h:panelGrid columns="2" cellpadding="10">
+                        <h:outputText value="Estudiantes de Tecnología en Sistemas: Maria Alejandra Pabon, Claudia Lorena Quiceno y Victor Camilo Jimenez"/>
+                    </h:panelGrid>
+                </prime:fieldset>
+
+
+
+
+            </prime:fieldset>
+
+
+
+
+        </h:form>
+
+    </ui:define>
+
+</ui:composition>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditDocentesTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditDocentesLabel_codDoc}" for="codDoc" />
+                    <h:inputText id="codDoc" value="#{docentesController.selected.codDoc}" title="#{bundle.EditDocentesTitle_codDoc}" required="true" requiredMessage="#{bundle.EditDocentesRequiredMessage_codDoc}"/>
+                    <h:outputLabel value="#{bundle.EditDocentesLabel_cedula}" for="cedula" />
+                    <h:inputText id="cedula" value="#{docentesController.selected.cedula}" title="#{bundle.EditDocentesTitle_cedula}" required="true" requiredMessage="#{bundle.EditDocentesRequiredMessage_cedula}"/>
+                    <h:outputLabel value="#{bundle.EditDocentesLabel_nombre}" for="nombre" />
+                    <h:inputText id="nombre" value="#{docentesController.selected.nombre}" title="#{bundle.EditDocentesTitle_nombre}" required="true" requiredMessage="#{bundle.EditDocentesRequiredMessage_nombre}"/>
+                    <h:outputLabel value="#{bundle.EditDocentesLabel_dia}" for="dia" />
+                    <h:inputText id="dia" value="#{docentesController.selected.dia}" title="#{bundle.EditDocentesTitle_dia}" required="true" requiredMessage="#{bundle.EditDocentesRequiredMessage_dia}"/>
+                    <h:outputLabel value="#{bundle.EditDocentesLabel_horaInicio}" for="horaInicio" />
+                    <h:inputText id="horaInicio" value="#{docentesController.selected.horaInicio}" title="#{bundle.EditDocentesTitle_horaInicio}" required="true" requiredMessage="#{bundle.EditDocentesRequiredMessage_horaInicio}"/>
+                    <h:outputLabel value="#{bundle.EditDocentesLabel_horaFin}" for="horaFin" />
+                    <h:inputText id="horaFin" value="#{docentesController.selected.horaFin}" title="#{bundle.EditDocentesTitle_horaFin}" required="true" requiredMessage="#{bundle.EditDocentesRequiredMessage_horaFin}"/>
+                </h:panelGrid>
+                <h:commandLink action="#{docentesController.update}" value="#{bundle.EditDocentesSaveLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="View" value="#{bundle.EditDocentesViewLink}" immediate="true"/>
+                <br />
+                <h:commandLink action="#{docentesController.prepareList}" value="#{bundle.EditDocentesShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.EditDocentesIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

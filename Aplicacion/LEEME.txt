@@ -1,0 +1,29 @@
+Para ejecutar el proyecto:
+
+1.Importe la base de datos en mysql. Información de como hacerlo en el manual de instalación.
+
+
+SI SE VA A DESPLEGAR EL ARCHIVO .WAR EN EL SERVIDOR GLASSFISH:
+
+1.Configure el recurso de datos en el servidor Glassfish, asi como se indica en el manual de instalación.
+ 
+2.Configure la contraseña y usuario de la aplicación, asi como se indica en el manual de instalación.
+
+3.Despliegue el poryecto asi como se indica en el manual de instalación
+
+
+
+SI SE VA A EJECUTAR DESDE NETBEANS:
+
+1.Configure la contraseña y usuario de la aplicación, asi como se indica en el manual de instalación.
+2. Abra el proyecto
+3. Verifique que no sale ningun error en el proyecto
+4. Para poder ejecutarlo importe la libreria primefaces-2.2.1
+5. Configure el archivo persistence y seleccione la base de datos con la que se va a conectar.
+   Abra el archivo persistence.xml que se encuentra en la carpeta Configuration Files.
+   En el campo Data Source seleccione la conexión con la base de datos que importó, clic en New Data Source
+   
+6. Compile y refresque.
+7. Corra el proyecto.
+
+Para mayor información: manual de usuario y manual de instalación.
